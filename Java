@@ -1,0 +1,63 @@
+// Name: Haotian Yan
+// Student ID: 251130976
+// Date: Dec 6, 2022
+// Professor: Dr. Shaimaa Ali
+
+import java.util.*;
+
+public class Pipe {
+    public static void main(String[] args) {
+
+
+        Stack<Double> noMaxArray = new Stack<>();
+        Stack<Double> noMinArray=new Stack<>();
+        Stack<Double> transformedArray=new Stack<>();
+
+
+double[] startArray = new double[]{4.5, 12.7, 11, 18.9, 7.90, 5.32};
+
+// first pipe for eliminating maximun indexed value
+        double maximum= startArray[0];
+        for(int i=0; i< startArray.length; i++){
+            if(maximum <startArray[i])
+                maximum = startArray[i];
+        }
+        for(int i=0; i< startArray.length; i++){
+            if(startArray[i] != maximum)
+        noMaxArray.push( startArray[i]);
+        }
+        System.out.println("Removed maximum: "+maximum);
+        System.out.println(noMaxArray);
+
+// second pipe for eliminating minimum indexed value
+        double minimum= noMaxArray.get(0);
+        for(var i=0; i< noMaxArray.size(); i++){
+            if(minimum > noMaxArray.get(i))
+                minimum = noMaxArray.get(i);
+
+        }
+        for(var i=0; i< noMaxArray.size(); i++){
+            if(noMaxArray.get(i) != minimum){
+                noMinArray.push(noMaxArray.get(i));
+            }
+        }
+        System.out.println("Removed minimum: "+minimum);
+        System.out.println(noMinArray);
+
+// 3rd pipe for transforming degree  into Fahrenheit
+
+        for(int i=0; i<noMinArray.size(); i++){
+            transformedArray.push((noMinArray.get(i)*9)/5+32);
+        }
+
+        System.out.println("After transform: "+ transformedArray);
+
+// 4th pipe to print each element one by one
+        for(int i=0; i<transformedArray.size(); i++){
+            System.out.println(transformedArray.get(i));
+        }
+
+
+
+    }
+}
